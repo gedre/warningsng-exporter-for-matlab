@@ -1,0 +1,20 @@
+/* Example pipeline for the the WarningsNG Exporter for Matlab */
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Run MATLAB') {
+            steps {
+                // Call MATLAB with the MATLAB Jenkins plugin.
+                // The .m script that creates a WarningsNG XML file.
+                // Note that the script needs to be in the Matlab search path.
+                runMATLABCommand('WarningsNG_demo.m')
+
+                // Read generated WarningsNG issues assuming that it was created
+                // in the current directory.
+                recordIssues(tools: [issues(pattern: '*.xml')])
+            }
+        }
+    }
+}
