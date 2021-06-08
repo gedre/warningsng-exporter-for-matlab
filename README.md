@@ -6,10 +6,10 @@ The **WarningsNG Exporter for MATLAB** is a MATLAB&reg; toolbox and provides a c
 
 MATLAB and Simulink&reg; provide own methods to display and manage warnings, errors and other diagnostic information.
 Currently, the exporter supports the conversion of these kind of data into the WarningsNG data format:
-* Thrown exceptions from MATLAB code (```MException``` and ```MSLException``` objects)
-* Output of Simulink simulation runs (```Simulink.SimulationOutput``` and ```Simulink.SimulationMetadata``` objects)
+* Thrown exceptions from MATLAB code (`MException` and `MSLException` objects)
+* Output of Simulink simulation runs (`Simulink.SimulationOutput` and `Simulink.SimulationMetadata` objects)
 * dSPACE TargetLink&reg; code generator diagnostics message structures
-* ```checkcode``` linter messages
+* `checkcode` linter messages
 
 Besides this conversion methods, generic warning issues may be be created by setting issue properties directly.
 
@@ -21,12 +21,12 @@ See the [Jenkins Warnings Next Generation Plugin](https://github.com/jenkinsci/w
 
 ## Installation
 
-Released packages are available in the [releases](releases) folder as MATLAB toolbox package files. To install after download, open MATLAB, navigate to the .mltbx file and double-click on it.  The toolbox is installed and shows up in the Add-On manager.
+See the GitHub [releases](https://github.com/gedre/warningsng-exporter-for-matlab/releases) for available MATLAB toolbox package files. To install a package after download, open MATLAB, navigate to the mltbx file and double-click on it.  The toolbox is installed and shows up in MATLAB's Add-On Manager.
 
 ## Structure
 
-The exporter defines two classes, ```Report``` and ```Issue```, within the namespace ```WarningsNG```.  The ```WarningsNG.Issue``` class represents individual issues in the [WarningNG issue data model](https://github.com/jenkinsci/analysis-model/blob/master/src/main/java/edu/hm/hafner/analysis/Issue.java).
-The ```WarningsNG.Report``` class collects of WarningsNG issues and provides the translation of the issues into the native WarningsNG XML file.
+The exporter defines two classes, `Report` and `Issue`, within the namespace `WarningsNG`.  The `WarningsNG.Issue` class represents individual issues in the [WarningNG issue data model](https://github.com/jenkinsci/analysis-model/blob/master/src/main/java/edu/hm/hafner/analysis/Issue.java).
+The `WarningsNG.Report` class collects of WarningsNG issues and provides the translation of the issues into the native WarningsNG XML file.
 
 ## Examples
 

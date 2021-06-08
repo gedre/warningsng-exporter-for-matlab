@@ -33,7 +33,7 @@ function release()
     fclose(fileID); % close file
 
     %% Package
-    mltbx = fullfile(cfdir, 'releases', [prjbase '-' tver '.mltbx']);
+    mltbx = fullfile(cfdir, [prjbase '-' tver '.mltbx']);
     matlab.addons.toolbox.packageToolbox(prjfile, mltbx);
 
     %% Show message
