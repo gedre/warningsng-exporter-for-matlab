@@ -62,8 +62,6 @@ function WarningsNG_demo()
 
     % create a MSL exception object
     MSLEx = MSLException(gcbh, message('Simulink:utility:incompatRotationMirror',5,'test'));
-    %ST = dbstack();
-    %MSLEx.stack = ST;
     MEx = MException('CauseId:Me','Causing exception');
     MSLEx = MSLEx.addCause(MEx); % add the old exception as cause
     report1.append(WarningsNG.Issue(MSLEx));

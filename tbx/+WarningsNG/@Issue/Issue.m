@@ -1,10 +1,10 @@
 classdef Issue
     % ISSUE objects store warning issues based on the WarningsNG data format.
     %
-    % This class offers conversion capabilites to translate Matlab/Simulink error/warning data into the
+    % This class offers conversion capabilities to translate Matlab/Simulink error/warning data into the
     % native format of the WarningsNG Jenkins plugin.
     %
-    % The convertable data formats are:
+    % The convertible data formats are:
     % - MException objects
     % - MSLException objects
     % - Simulink.SimulationOutput objects
@@ -12,7 +12,7 @@ classdef Issue
     % - TargetLink message structs
     % - checkcode linter messages
     %
-    % The properites of this class contain most data elements that are found in the Issue class of the
+    % The properties of this class contain most data elements that are found in the Issue class of the
     % WarningsNG Jenkins plugin.
     %
     % Implementation of the related class "Issue" within the WarningsNG plugin is found at
@@ -73,8 +73,8 @@ classdef Issue
             %       Creates one issue object with default properties.
             %   issues = WarningsNG.Issue(diag);
             %       Creates issue objects by extracting information form the MSLDiagnostic object array diag.
-            %   issues = WarningsNG.Issue(exeption);
-            %       Creates issue objects by extracting information form the MSLException or MException object array excepton an all causing exceptions.
+            %   issues = WarningsNG.Issue(exception);
+            %       Creates issue objects by extracting information form the MSLException or MException object array exception an all causing exceptions.
             %   issues = WarningsNG.Issue(simmeta);
             %       Creates issue objects by extracting diagnostics form the Simulink.SimulationMetadata object simmeta.
             %   issues = WarningsNG.Issue(simout);
@@ -82,15 +82,15 @@ classdef Issue
             %   issues = WarningsNG.Issue(tlmsgs);
             %       Creates issue objects by extracting diagnostics form the TargetLink message struct array tlmsgs.
             %   issues = WarningsNG.Issue(___, prop, value, ...);
-            %       Creates issue objects and overwrites class properites as given by the parameter-value pairs. See the class documentation on the properties and the possible values.
+            %       Creates issue objects and overwrites class properties as given by the parameter-value pairs. See the class documentation on the properties and the possible values.
 
             if nargin == 0
-                % constructor call with no paramenters: construct one object with default properties
+                % constructor call with no parameters: construct one object with default properties
                 return;
             end
 
             exInfo = []; % execution information struct, default: none available
-            paramArgs = varargin; % take parameters from the funktion arguments
+            paramArgs = varargin; % take parameters from the function arguments
 
             % check the first function argument type
             if isa(in, 'MSLDiagnostic')
@@ -257,7 +257,7 @@ classdef Issue
         end
 
         function issues = MException2Issue(exceptions)
-            % Append new Issue objects from an array of MExeption or MSLExeption objects
+            % Append new Issue objects from an array of MException or MSLException objects
             % and return Issue object array.
 
             % Data structure examples:
@@ -466,7 +466,7 @@ classdef Issue
             %
             % Arguments:
             % - checkcode: a struct array with 2 fields 'info' and 'filepaths'
-            %              corresponding to the 2 ouputs of the checkcode() function. 
+            %              corresponding to the 2 outputs of the checkcode() function. 
 
             issues = WarningsNG.Issue.empty; % start with empty object array
 

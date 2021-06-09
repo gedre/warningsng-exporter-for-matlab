@@ -20,7 +20,7 @@ classdef Report < handle
         % The file name to be used if writing to file happens in destructor
         FileName (1,:) char = 'WarningsNG.xml';
 
-        % flag to remeber if the content was already saved to the XML file.
+        % flag to remember if the content was already saved to the XML file.
         IsSaved logical = false;
     end
 
@@ -41,7 +41,7 @@ classdef Report < handle
             % Input Arguments:
             %   issues: array of WarningsNG.Issue objects
             %
-            %   fileName: XML file name given as string or char vecor is used. If not given, the default file name
+            %   fileName: XML file name given as string or char vector is used. If not given, the default file name
             %   "WarningsNG.xml" is used.
 
             for i=1:nargin
