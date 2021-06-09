@@ -23,6 +23,9 @@ See the [Jenkins Warnings Next Generation Plugin](https://github.com/jenkinsci/w
 
 See the GitHub [releases](https://github.com/gedre/warningsng-exporter-for-matlab/releases) for available MATLAB toolbox package files. To install a package after download, open MATLAB, navigate to the mltbx file and double-click on it.  The toolbox is installed and shows up in MATLAB's Add-On Manager.
 
+The toolbox package is also available on 
+[![View WarningsNG Exporter on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://de.mathworks.com/matlabcentral/fileexchange/93755-warningsng-exporter).
+
 ## Structure
 
 The exporter defines two classes, `Report` and `Issue`, within the namespace `WarningsNG`.  The `WarningsNG.Issue` class represents individual issues in the [WarningNG issue data model](https://github.com/jenkinsci/analysis-model/blob/master/src/main/java/edu/hm/hafner/analysis/Issue.java).
