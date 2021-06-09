@@ -5,7 +5,20 @@
     <param.email>Georg.Drenkhahn@schaeffler.com</param.email>
     <param.company>Schaeffler Technologies</param.company>
     <param.summary>Convert and export diagnostic data into WarningsNG native XML format.</param.summary>
-    <param.description>See https://github.com/rabiator/warningsng-exporter-for-matlab</param.description>
+    <param.description>The Jenkins Warnings Next Generation Plugin collects compiler warnings or issues of static analysis tools and visualizes the results.
+
+The "WarningsNG Exporter for MATLAB" is a MATLAB toolbox and provides a converter for diagnostic messages into the native WarningsNG XML format that can be read by the Jenkins WarningsNG plugin.  The converter is intended to be used from within MATLAB scripts that are called as part of a Jenkins CI jobs, e.g. with the help of the Jenkins MATLAB Plugin.
+
+MATLAB and Simulink provide own methods to display and manage warnings, errors and other diagnostic messages.
+Currently, the exporter supports the conversion of the following data:
+* Thrown exceptions from MATLAB code (MException and MSLException objects)
+* Output of Simulink simulation runs (Simulink.SimulationOutput and Simulink.SimulationMetadata objects)
+* dSPACE TargetLink code generator diagnostics message structures
+* checkcode linter messages
+
+In addition, generic warning issues can be created by setting individual issue properties directly.
+
+See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</param.description>
     <param.screenshot>${PROJECT_ROOT}\WarningsNG_Exporter.png</param.screenshot>
     <param.version>1.0</param.version>
     <param.output>${PROJECT_ROOT}\WarningsNG Exporter.mltbx</param.output>
