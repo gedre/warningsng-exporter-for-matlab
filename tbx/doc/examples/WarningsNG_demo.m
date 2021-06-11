@@ -56,9 +56,6 @@ function WarningsNG_demo()
     % extract warning issue from Simulink.SimulationOutput object
     report1.append( WarningsNG.Issue(simout) );
 
-    % close vdp model again and discard changes
-    bdclose();
-    
     %% Example #4
 
     disp("Example: linked exceptions with stack");
@@ -112,6 +109,11 @@ function WarningsNG_demo()
     %% write all issues to WarningsNG XML file without file-name override
 
     report1.xmlwrite();
+
+    %% clean up
+
+    % close vdp model again and discard changes
+    bdclose();
 
     % let report2 go out of scope her.  The destructor writes the XML file 'Issues.xml' with one entry.
 end
