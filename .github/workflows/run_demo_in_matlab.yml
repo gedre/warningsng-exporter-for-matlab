@@ -1,6 +1,6 @@
-# This is a basic workflow to help you get started with Actions
+# This workflow checks if the provided demo runs in matlab
 
-name: Run Matlab
+name: Run Demo in Matlab
 
 # Controls when the action will run. 
 on:

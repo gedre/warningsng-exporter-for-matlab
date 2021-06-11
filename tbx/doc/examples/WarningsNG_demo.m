@@ -56,6 +56,9 @@ function WarningsNG_demo()
     % extract warning issue from Simulink.SimulationOutput object
     report1.append( WarningsNG.Issue(simout) );
 
+    % close vdp model again and discard changes
+    bdclose();
+    
     %% Example #4
 
     disp("Example: linked exceptions with stack");

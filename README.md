@@ -1,5 +1,8 @@
 # WarningsNG Exporter for MATLAB
 
+[![View WarningsNG Exporter on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://de.mathworks.com/matlabcentral/fileexchange/93755-warningsng-exporter)
+[![Run Demo in Matlab](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml/badge.svg)](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml)
+
 The [Jenkins Warnings Next Generation Plugin](https://github.com/jenkinsci/warnings-ng-plugin) collects compiler warnings or issues of static analysis tools and visualizes the results.
 
 The **WarningsNG Exporter for MATLAB** is a MATLAB&reg; toolbox and provides a converter for diagnostic messages into the native WarningsNG XML format that can be read by the Jenkins WarningsNG plugin.  The converter is intended to be used from within MATLAB scripts that are called as part of a Jenkins CI jobs, e.g. with the help of the [Jenkins MATLAB Plugin](https://github.com/mathworks/jenkins-matlab-plugin).
@@ -21,10 +24,7 @@ See the [Jenkins Warnings Next Generation Plugin](https://github.com/jenkinsci/w
 
 ## Installation
 
-See the GitHub [releases](https://github.com/gedre/warningsng-exporter-for-matlab/releases) for available MATLAB toolbox package files. To install a package after download, open MATLAB, navigate to the mltbx file and double-click on it.  The toolbox is installed and shows up in MATLAB's Add-On Manager.
-
-The toolbox package is also available on 
-[![View WarningsNG Exporter on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://de.mathworks.com/matlabcentral/fileexchange/93755-warningsng-exporter).
+To install a package after download, open MATLAB, navigate to the mltbx file and double-click on it.  The toolbox is installed and shows up in MATLAB's Add-On Manager.
 
 ## Structure
 
@@ -72,7 +72,7 @@ See the [MATLAB demo script](tbx/doc/examples/WarningsNG_demo.m) and the [Jenkin
 
 ## Further Documentation
 
-See the class documentation in MATLAB with
+Display the class documentation in MATLAB with
 ```matlab
 doc WarningsNG.Issue
 doc WarningsNG.Report
