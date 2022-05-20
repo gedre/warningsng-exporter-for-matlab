@@ -1,2 +1,8 @@
-*.mltbx
+# local VS Code configuration
 .vscode
+
+# files from the build process
+*.mltbx
+Issues.xml
+WarningsNG.xml
+tbx/doc/examples/html/WarningsNG_demo.html
