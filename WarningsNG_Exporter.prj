@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration file="O:\MATLAB\warningsng-exporter-for-matlab\WarningsNG_Exporter.prj" location="O:\MATLAB\warningsng-exporter-for-matlab" name="WarningsNG_Exporter" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="810123011" file="C:\GitHub\warningsng-exporter-for-matlab\WarningsNG_Exporter.prj" location="C:\GitHub\warningsng-exporter-for-matlab" name="WarningsNG_Exporter" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>WarningsNG Exporter</param.appname>
     <param.authnamewatermark>Georg Drenkhahn</param.authnamewatermark>
     <param.email>Georg.Drenkhahn@schaeffler.com</param.email>
@@ -20,7 +20,7 @@ In addition, generic warning issues can be created by setting individual issue p
 
 See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</param.description>
     <param.screenshot>${PROJECT_ROOT}\WarningsNG_Exporter.png</param.screenshot>
-    <param.version>1.0</param.version>
+    <param.version>1.1</param.version>
     <param.output>${PROJECT_ROOT}\WarningsNG Exporter.mltbx</param.output>
     <param.products.name />
     <param.products.id />
@@ -29,7 +29,16 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
     <param.guid>331cb434-c13e-45d2-8d62-bde3e9ebce35</param.guid>
     <param.exclude.filters />
     <param.exclude.pcodedmfiles>true</param.exclude.pcodedmfiles>
-    <param.examples />
+    <param.examples>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;examples&gt;
+   &lt;exampleCategory name="examples"&gt;
+      &lt;example name="WarningsNG_demo" type="html"&gt;
+         &lt;file type="source"&gt;/doc/examples/html/WarningsNG_demo.html&lt;/file&gt;
+         &lt;file type="main"&gt;/doc/examples/WarningsNG_demo.m&lt;/file&gt;
+         &lt;file type="thumbnail"/&gt;
+      &lt;/example&gt;
+   &lt;/exampleCategory&gt;
+&lt;/examples&gt;</param.examples>
     <param.demosxml />
     <param.apps />
     <param.registered.apps />
@@ -37,7 +46,7 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
     <param.getting.started.guide />
     <param.matlabpath.excludes />
     <param.javaclasspath.excludes />
-    <param.exported.on.package>false</param.exported.on.package>
+    <param.exported.on.package>true</param.exported.on.package>
     <param.release.start>R2018b</param.release.start>
     <param.release.end>latest</param.release.end>
     <param.release.current.only>false</param.release.current.only>
@@ -52,7 +61,6 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
     <param.additional.sw.mac.url />
     <param.additional.sw.linux.url />
     <unset>
-      <param.version />
       <param.output />
       <param.products.name />
       <param.products.id />
@@ -60,7 +68,6 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
       <param.platforms />
       <param.exclude.filters />
       <param.exclude.pcodedmfiles />
-      <param.examples />
       <param.demosxml />
       <param.apps />
       <param.registered.apps />
@@ -68,7 +75,6 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
       <param.getting.started.guide />
       <param.matlabpath.excludes />
       <param.javaclasspath.excludes />
-      <param.exported.on.package />
       <param.release.current.only />
       <param.compatiblity.windows />
       <param.compatiblity.macos />
@@ -87,13 +93,14 @@ See https://github.com/gedre/warningsng-exporter-for-matlab for more details.</p
     <fileset.rootfiles>
       <file>${PROJECT_ROOT}\tbx\+WarningsNG</file>
       <file>${PROJECT_ROOT}\tbx\Contents.m</file>
+      <file>${PROJECT_ROOT}\tbx\demos.xml</file>
       <file>${PROJECT_ROOT}\tbx\doc</file>
     </fileset.rootfiles>
     <fileset.depfun.included />
     <fileset.depfun.excluded />
     <fileset.package />
     <build-deliverables>
-      <file location="O:\MATLAB\warningsng-exporter-for-matlab" name="WarningsNG Exporter.mltbx" optional="false">O:\MATLAB\warningsng-exporter-for-matlab\WarningsNG Exporter.mltbx</file>
+      <file location="C:\GitHub\warningsng-exporter-for-matlab" name="WarningsNG Exporter.mltbx" optional="false">C:\GitHub\warningsng-exporter-for-matlab\WarningsNG Exporter.mltbx</file>
     </build-deliverables>
     <workflow />
     <matlab>
