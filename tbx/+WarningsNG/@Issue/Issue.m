@@ -30,10 +30,12 @@ classdef Issue
         % Predefined values known by WarningsNG: 'ERROR', 'HIGH', 'NORMAL', 'LOW'
         Severity    (1,:) char = 'NORMAL'
 
-        % The detail message of the issue
+        % The detailed message of the issue. This must be ASCII text and is converted into valid HTML on export.
         Message     (1,:) char = ''
 
         % The description for the issue. This must be ASCII text and is converted into valid HTML on export.
+        %
+        % Note: The description element may not be displayed any mor in newer Jenkins WarningsNG plugin versions.
         Description (1,:) char = ''
 
         % The ID of the tool that did report this issue
@@ -190,6 +192,8 @@ classdef Issue
             % ARGUMENTS:
             % - diagnostics: object or array of objects of type MSDiagnostic.
             % - severity: char array denoting the issue severity. possible values 'ERROR', 'HIGH', 'NORMAL', or 'LOW'.
+            % - SimulationPhase: char array
+            % - SimulationTime: double or []
 
             % Data structure examples:
             %
@@ -209,37 +213,44 @@ classdef Issue
 
             for i=1:numel(diagnostics)
                 d = diagnostics(i);
+                msg_text = MSLDiagnostic.getMsgToDisplay(true, d.message); % remove the markup from text
+
                 % adding info regarding simulation phase and simulation time to the description property
                 if ~isempty(SimulationPhase)
-                    desc = sprintf("Simulation phase: %s\n", SimulationPhase);
-                else
-                    desc = "";
+                    % The SimulationPhase is a char vector taken from
+                    % Simulink.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.SimulationPhase or
+                    % Simulink.SimulationMetadata.ExecutionInfo.WarningDiagnostics().SimulationPhase.
+
+                    % append to message text
+                    msg_text = [ msg_text newline 'Simulation phase: ' SimulationPhase ]; %#ok<AGROW>
                 end
                 if ~isempty(SimulationTime)
-                    desc = desc + sprintf("Simulation time : %s\n", SimulationTime);
+                    % SimulationTime is a double value taken from
+                    % Simulink.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.SimulationTime or
+                    % Simulink.SimulationMetadata.ExecutionInfo.WarningDiagnostics().SimulationTime
+                    msg_text = sprintf("%s\nSimulation time : %f", msg_text, SimulationTime);
                 end
+
+                % create new issue object
                 issue = WarningsNG.Issue( ...
                     'Type',        d.identifier, ...
                     'Severity',    severity, ...
-                    'Message',     MSLDiagnostic.getMsgToDisplay(true, d.message), ... % remove the markup from text
+                    'Message',     strtrim(msg_text), ... 
                     'Category',    'MATLAB/Simulink Diagnostics', ...
-                    'Origin',      'Simulink', ...
-                    'Description', desc);
-                % Note: the stack structure consists of the fields 'file', 'name', 'line'.  We only report the top most
-                % element and we ignore the function name.
+                    'Origin',      'Simulink');
+
                 if ~isempty(d.stack)
-                    % take causing file and lin number form the top element of the stack trace
+                    % Note: the stack structure consists of the fields 'file' (char), 'name' (char), 'line' (double).
+                    % We only report the top most element and we ignore the function name.
                     issue.FileName  = d.stack(1).file;
                     issue.LineStart = d.stack(1).line;
                     issue.LineEnd   = d.stack(1).line;
-
-                    % append stack trace to issue description
-                    issue.Description = [ issue.Description newline WarningsNG.Issue.StackTrace2CharVec(d.stack) ];
+                    % append stack trace to issue message
+                    issue.Message = [ msg_text newline WarningsNG.Issue.StackTrace2CharVec(d.stack) ];
                 end
-                issue.Description = strtrim(issue.Description);
                 if ~isempty(d.paths)
                     for j=1:numel(d.paths)
-                        % add new issue entry for each affected path
+                        % add new issue entry with path set in ModuleName field for each affected path
                         issue.ModuleName = d.paths{j};
                         issues(end+1) = issue; %#ok<AGROW>
                     end
@@ -247,7 +258,6 @@ classdef Issue
                     % add entry without module/path
                     issues(end+1) = issue; %#ok<AGROW>
                 end
-
                 if ~isempty(d.cause)
                     % recursively add causing diagnostics
                     causing_diags = [ d.cause{:} ]; % transform cells with objects into array of objects
@@ -276,30 +286,32 @@ classdef Issue
 
             issues = WarningsNG.Issue.empty; % start with empty object array
 
-            for i=1:numel(exceptions)
+            for i = 1:numel(exceptions)
                 ex = exceptions(i);
-                issue = WarningsNG.Issue(...
-                    'Type',        ex.identifier, ...
-                    'Severity',    'ERROR', ...
-                    'Message',     MSLDiagnostic.getMsgToDisplay(...
-                        true, ex.getReport('basic',    'hyperlinks', 'off')), ...
-                    'Description', MSLDiagnostic.getMsgToDisplay(...
-                        true, ex.getReport('extended', 'hyperlinks', 'off')));
+
                 % Remove the hyperlinks from the Exception message as these can only be used on the MATLAB console.
                 % MException.getReport() does not remove all html tags. We use MSLDiagnostic.getMsgToDisplay() in
                 % addition here.
+                msg_text = MSLDiagnostic.getMsgToDisplay(true, ex.getReport('extended', 'hyperlinks', 'off'));
+
+                % create new issue object
+                issue = WarningsNG.Issue(...
+                    'Type',        ex.identifier, ...
+                    'Severity',    'ERROR', ...
+                    'Message',     strtrim(msg_text));
+
                 if ~isempty(ex.stack)
-                    % Note: the stack structure consists of the fields 'file', 'name', 'line'.  Only report the top
-                    % stack element and ignore the function name.
+                    % Note: the stack structure consists of the fields 'file', 'name', 'line'.  We only report the top
+                    % most element and we ignore the function name.
                     issue.FileName  = ex.stack(1).file;
                     issue.LineStart = ex.stack(1).line;
                     issue.LineEnd   = ex.stack(1).line;
 
-                    % append stack trace to issue description
-                    issue.Description = [ issue.Description newline WarningsNG.Issue.StackTrace2CharVec(ex.stack) ];
+                    % append stack trace to issue message
+                    issue.Message = [ msg_text newline WarningsNG.Issue.StackTrace2CharVec(ex.stack) ];
                 end
-                issue.Description = strtrim(issue.Description);
 
+                % differentiate between MATLAB/Simulink and MATLAB exceptions
                 if isa(ex, 'MSLException')
                     issue.Category = 'MATLAB/Simulink Exception';
                     issue.Origin   = 'Simulink';
@@ -389,47 +401,54 @@ classdef Issue
                         severity = 'LOW';
                 end
 
-                issues(end+1) = WarningsNG.Issue(...
+                msg_text = tlMsgs(i).title;
+
+                % extend issue message from other TL message struct fields if they are not empty
+                if ~isempty(tlMsgs(i).objectName)
+                    msg_text = sprintf([ ...
+                        '%s' newline ...
+                        'ObjectName: %s' newline ...
+                        'ObjectKind: %s'], ...
+                        msg_text, tlMsgs(i).objectName, tlMsgs(i).objectKind);
+                end
+
+                % create new issue object
+                issue = WarningsNG.Issue(...
                     'Type',        issueType, ...
                     'Severity',    severity, ...
-                    'Message',     tlMsgs(i).title, ...
+                    'Message',     strtrim(msg_text), ...
                     'Origin',      'TargetLink', ...
-                    'Category',    'TargetLink messages'); %#ok<AGROW>
-
-                % assemble issue description from other TL message struct fields if they are not empty
-                if ~isempty(tlMsgs(i).objectName)
-                    issues(end).Description = [ issues(end).Description ...
-                        sprintf([ ...
-                            'ObjectName: %s' newline ...
-                            'ObjectKind: %s' newline], ...
-                            tlMsgs(i).objectName, tlMsgs(i).objectKind) ];
-                end
+                    'Category',    'TargetLink messages');
 
                 % if module (i.e. the file) is given write this into the matching issue properties
                 if ~isempty(tlMsgs(i).module) && ~strcmp(tlMsgs(i).module, 'unknown')
-                    issues(end).FileName  = tlMsgs(i).module;
-                    issues(end).LineStart = tlMsgs(i).line;
-                    issues(end).LineEnd   = tlMsgs(i).line;
-                    issues(end).Description = [ issues(end).Description ...
-                        sprintf([ ...
-                            'Module    : %s' newline ...
-                            'Function  : %s' newline ...
-                            'Line      : %d'], ...
-                            tlMsgs(i).module, tlMsgs(i).fcn, tlMsgs(i).line) ];
+                    issue.FileName  = tlMsgs(i).module;
+                    issue.LineStart = tlMsgs(i).line;
+                    issue.LineEnd   = tlMsgs(i).line;
+                    issue.Message   = sprintf([ ...
+                        '%s' newline ...
+                        'Module    : %s' newline ...
+                        'Function  : %s' newline ...
+                        'Line      : %d'], ...
+                        msg_text, tlMsgs(i).module, tlMsgs(i).fcn, tlMsgs(i).line);
                 end
+
+                % append to list of issues
+                issues(end+1) = issue; %#ok<AGROW>
             end
         end
 
         function str = StackTrace2CharVec(stack)
             % assemble text (char array) containing the stack trace
 
-            str = ['Stack Trace:' newline];
+            str = 'Stack Trace:';
             for k = 1:numel(stack)
-                str = [str sprintf([
+                str = sprintf([
+                    '%s' newline ...
                     'file: %s' newline ...
                     'name: %s' newline ...
-                    'line: %d' newline], ...
-                    stack(k).file, stack(k).name, stack(k).line)]; %#ok<AGROW>
+                    'line: %d'], ...
+                    str, stack(k).file, stack(k).name, stack(k).line);
             end
         end
 
@@ -498,6 +517,5 @@ classdef Issue
                 end
             end
         end
-
     end
 end
