@@ -48,7 +48,7 @@ function WarningsNG_demo()
     report1.append(simulink_issue);
 
     % run simulation again, but enable "Automatic solver parameter selection" diagnostics, which causes a warning.
-    disp("If you see a warning here, that's OK!");
+    disp("It is OK, if you see a warning below!");
     simout = sim('vdp', ...
         'StopTime',          '1', ...
         'SolverPrmCheckMsg', 'warning', ...
@@ -95,10 +95,11 @@ function WarningsNG_demo()
     disp("Example: issues from mlint/checkcode");
     
     % all .m files in subdirectories
-    filesToCheckStructs = dir(fullfile("..", "**", "*.m"));
-    filesToCheck = arrayfun(@(x) string(fullfile(x.folder, x.name)), filesToCheckStructs);
+    dir_base            = fileparts(mfilename('fullpath'));
+    filesToCheckStructs = dir(fullfile(dir_base, "**", "*.m"));
+    filesToCheck        = arrayfun(@(x) string(fullfile(x.folder, x.name)), filesToCheckStructs);
 
-    % Call checkode to lint MATLAB code.
+    % Call checkcode to lint MATLAB code.
     % Note: checkcode needs to be called with the '-id' option. The returned IDs are also used by the Issue class.
     [info, fp] = checkcode(filesToCheck, '-id');
     % create a struct with both outputs of checkcode for the call of the Issue constructor
