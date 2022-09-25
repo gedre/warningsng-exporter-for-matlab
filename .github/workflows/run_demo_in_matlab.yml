@@ -1,8 +1,8 @@
 # This workflow checks if the provided demo runs in matlab
 
-name: Run Demo in Matlab
+name: Run toolbox demo in MATLAB
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -28,10 +28,24 @@ jobs:
 
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v0
-        
-      # Run the demo in matlab
-      - name: Run demo script
-        uses: matlab-actions/run-command@v0
+        uses: matlab-actions/setup-matlab@v1
+
+      - name: Build the toolbox distribution package
+        uses: matlab-actions/run-command@v1
         with:
-          command: addpath('tbx',fullfile('tbx','doc','examples'));WarningsNG_demo
+          command: build_dist_package
+
+      - name: Install toolbox
+        uses: matlab-actions/run-command@v1
+        with:
+          command: install_toolbox
+
+      - name: Run toolbox demo script
+        uses: matlab-actions/run-command@v1
+        with:
+          command: run_demo
+
+      - name: Uninstall toolbox
+        uses: matlab-actions/run-command@v1
+        with:
+          command: uninstall_toolbox

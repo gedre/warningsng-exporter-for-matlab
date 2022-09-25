@@ -1,7 +1,7 @@
 # WarningsNG Exporter for MATLAB
 
 [![View WarningsNG Exporter on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://de.mathworks.com/matlabcentral/fileexchange/93755-warningsng-exporter)
-[![Run Demo in Matlab](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml/badge.svg)](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml)
+[![Run toolbox demo in MATLAB](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml/badge.svg)](https://github.com/gedre/warningsng-exporter-for-matlab/actions/workflows/run_demo_in_matlab.yml)
 
 The [Jenkins Warnings Next Generation Plugin](https://github.com/jenkinsci/warnings-ng-plugin) collects compiler warnings or issues of static analysis tools and visualizes the results.
 

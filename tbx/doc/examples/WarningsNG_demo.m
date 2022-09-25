@@ -6,7 +6,7 @@ function WarningsNG_demo()
     %% Example #1
 
     % generate an exception by calling a non-existent function
-    disp("Example: issue from exception object");
+    disp("Example #1: issue from exception object");
     try
         notaFunction(5,6);
     catch ME
@@ -19,11 +19,11 @@ function WarningsNG_demo()
 
     % create a 2nd report file with non-default file name and initial issues
     report2 = WarningsNG.Report(exception_issue, "Issues");
-    % the line above should cause a "variable might be unused" warning.  This is should turn up in Example #6.
+    % the line above should cause a "variable might be unused" warning.  This should turn up in Example #5.
 
     %% Example #2
 
-    disp("Example: self-constructed issue");
+    disp("Example #2: self-constructed issue");
     generic_issue = WarningsNG.Issue(...
         'Cat',  'My issue category', ...
         'Ty',   'My issue type', ...
@@ -36,7 +36,7 @@ function WarningsNG_demo()
 
     %% Example #3
 
-    disp("Example: issues from Simulink sim run");
+    disp("Example #3: issues from Simulink sim run");
 
     % simulate with invalid stop time.  This causes an error entry in
     % simout.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.Diagnostic
@@ -58,7 +58,7 @@ function WarningsNG_demo()
 
     %% Example #4
 
-    disp("Example: linked exceptions with stack");
+    disp("Example #4: linked exceptions with stack");
 
     % create a MSL exception object
     MSLEx = MSLException(gcbh, message('Simulink:utility:incompatRotationMirror',5,'test'));
@@ -68,10 +68,26 @@ function WarningsNG_demo()
 
     %% Example #5
 
-    % only if TargetLink is installed
+    disp("Example #5: issues from mlint/checkcode");
+    
+    % all .m files in subdirectories
+    dir_base            = fileparts(mfilename('fullpath'));
+    filesToCheckStructs = dir(fullfile(dir_base, "**", "*.m"));
+    filesToCheck        = arrayfun(@(x) string(fullfile(x.folder, x.name)), filesToCheckStructs);
+
+    % Call checkcode to lint MATLAB code.
+    % Note: checkcode needs to be called with the '-id' option. The returned IDs are also used by the Issue class.
+    [info, fp] = checkcode(filesToCheck, '-id');
+    % create a struct with both outputs of checkcode for the call of the Issue constructor
+    cc.info      = info;
+    cc.filepaths = fp;
+    report1.append( WarningsNG.Issue(cc) );
+
+    %% Example #6, if TargetLink is installed
+
     if exist('ds_error_get', 'file')
 
-        disp("Example: issues from TargetLink messages");
+        disp("Example #6: issues from TargetLink messages");
 
         % create example message struct and set some fields
         msg = ds_error_get('MessageStruct', ...
@@ -90,23 +106,6 @@ function WarningsNG_demo()
         report1.append(tl_issue);
     end
 
-    %% Example #6
-
-    disp("Example: issues from mlint/checkcode");
-    
-    % all .m files in subdirectories
-    dir_base            = fileparts(mfilename('fullpath'));
-    filesToCheckStructs = dir(fullfile(dir_base, "**", "*.m"));
-    filesToCheck        = arrayfun(@(x) string(fullfile(x.folder, x.name)), filesToCheckStructs);
-
-    % Call checkcode to lint MATLAB code.
-    % Note: checkcode needs to be called with the '-id' option. The returned IDs are also used by the Issue class.
-    [info, fp] = checkcode(filesToCheck, '-id');
-    % create a struct with both outputs of checkcode for the call of the Issue constructor
-    cc.info      = info;
-    cc.filepaths = fp;
-    report1.append( WarningsNG.Issue(cc) );
-
     %% write all issues to WarningsNG XML file without file-name override
 
     report1.xmlwrite();
@@ -116,5 +115,8 @@ function WarningsNG_demo()
     % close vdp model again and discard changes
     bdclose();
 
+    %% Closing info
+    disp("Look into files Issues.xml and WarningNG.xml to see the results of the demo.")
+    
     % let report2 go out of scope her.  The destructor writes the XML file 'Issues.xml' with one entry.
 end
