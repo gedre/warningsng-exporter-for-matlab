@@ -5,4 +5,4 @@
 WarningsNG_Exporter*.mltbx
 tbx/doc/demo/*.xml
 toolbox_struct.mat
-/*.xml
+tp*

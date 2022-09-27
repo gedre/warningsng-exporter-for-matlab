@@ -4,18 +4,35 @@ function run_demo()
     issue_class_file = fileparts(which('WarningsNG.Issue')); % get installation directory of Issue class file
     % construct the relative path to the demos script. Is there a more elegant way to determine the base installation
     % directory of a toolbox?
-    demo_m_dir = fullfile(issue_class_file, "..", "..", "doc", "demo", "m");
-    demo_m_file  = fullfile(demo_m_dir, "WarningsNG_demo.m");
+    demo_src_dir = fullfile(issue_class_file, "..", "..", "doc", "demo");
 
-    disp("Cleaning demo outputs");
-    files_to_delete = fullfile(demo_m_dir, "*.xml");
-    delete(files_to_delete);
-    disp("... done: " + files_to_delete);
+    demo_tar_dir = tempname(".");
 
-    disp("Running demo script " + demo_m_file);
-    run(demo_m_file); % script is executed in the path of the script
+    % copy demo to local directory to prevent running in the original installation directory
+    disp("Populating new demo directory copy");
+    copyfile(demo_src_dir, demo_tar_dir);
+    disp("... done");
+
+    disp("Changing into new demo directory copy");
+    old_dir = cd(demo_tar_dir);
+    disp("... done: " + demo_tar_dir);
+
+    disp("Running demo live script");
+    WarningsNG_demo
     disp("... done");
 
     disp("Output files:");
-    dir(fullfile(demo_m_dir, "*.xml"));
+    dir("*.xml");
+
+    disp("Changing into new demo/m directory copy");
+    cd("m");
+    disp("... done");
+
+    disp("Running demo m script");
+    WarningsNG_demo
+    disp("... done");
+
+    disp("Changing to old directory");
+    cd(old_dir);
+    disp("... done");
 end
