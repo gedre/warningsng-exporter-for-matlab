@@ -1,9 +1,8 @@
 # local VS Code configuration
 .vscode
 
-# files from the build process
-*.mltbx
-Issues.xml
-WarningsNG.xml
-tbx/doc/examples/html/WarningsNG_demo.html
-*.mat
+# generated files during package creation and demo execution
+WarningsNG_Exporter*.mltbx
+tbx/doc/demo/WarningsNG_demo.html
+tbx/doc/demo/*.xml
+toolbox_struct.mat

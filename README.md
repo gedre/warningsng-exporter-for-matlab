@@ -68,7 +68,7 @@ end
 report.xmlwrite();
 ```
 
-See the [MATLAB demo script](tbx/doc/examples/WarningsNG_demo.m) and the [Jenkinsfile](tbx/doc/examples/Jenkinsfile) for further application examples.
+See the [MATLAB demo live script](tbx/doc/demo/WarningsNG_demo.mlx) and the [Jenkinsfile](tbx/doc/demo/Jenkinsfile) for further application examples.
 
 ## Further Documentation
 

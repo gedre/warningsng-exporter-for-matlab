@@ -1,6 +1,5 @@
 function install_toolbox()
-    % Install the MATLAB toolbox from the distribution package.
-    % This is for testing only.
+    % Install the MATLAB toolbox from the distribution package. This is for testing only.
 
     % Docs on Toolbox Distribution:
     % web(fullfile(docroot, 'matlab/creating-help.html?s_tid=CRUX_lftnav'))
@@ -12,9 +11,9 @@ function install_toolbox()
 
     % install the toolbox
     toolbox_struct = matlab.addons.toolbox.installToolbox(toolbox_file_full);
-    save('toolbox_struct.mat', 'toolbox_struct');
-    disp("Installed the toolbox");
+    save('toolbox_struct.mat', 'toolbox_struct'); % save toolbox data for later uninstallation
+    disp("Installed WarningsNG Exporter toolbox");
 
-    % verify the installation
+    % print installed addons to the screen to verify the installation
     matlab.addons.installedAddons()
 end

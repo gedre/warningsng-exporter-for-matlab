@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>WarningsNG Exporter</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <p>The <a href="https://github.com/jenkinsci/warnings-ng-plugin">Jenkins Warnings Next Generation Plugin</a>
+        collects compiler warnings or issues of static analysis tools and visualizes the results.</p>
+        
+        <p>The <em>WarningsNG Exporter for MATLAB</em> is a MATLAB toolbox and provides a converter for diagnostic messages
+        into the native WarningsNG XML format that can be read by the Jenkins WarningsNG plugin. The converter is
+        intended to be used from within MATLAB scripts that are called as part of a Jenkins CI jobs, e.g. with the help
+        of the Jenkins MATLAB Plugin.</p>
+        
+        <p>MATLAB and Simulink provide own methods to display and manage warnings, errors and other diagnostic messages.
+        Currently, the exporter supports the conversion of the following data:</p>
+        <ul>
+            <li>Thrown exceptions from MATLAB code (<code>MException</code> and <code>MSLException</code> objects)</li>
+            <li>Output of Simulink simulation runs (<code>Simulink.SimulationOutput</code> and <code>Simulink.SimulationMetadata</code>
+            objects)</li>
+            <li>dSPACE TargetLink code generator diagnostics message structures</li>
+            <li><code>checkcode</code> linter messages</li>
+        </ul>
+        
+        <p>In addition, generic warning issues can be created by setting individual issue properties directly.</p>
+        
+        <p>For more details see:</p>
+        <ul>
+            <li>the <a href="demo/WarningsNG_demo.html">demo live script</a> for examples</li>
+            <li>the class documentation of <code><a href="matlab:doc('WarningsNG.Issue')">WarningsNG.Issue</a></code></li>
+            <li>the class documentation of <code><a href="matlab:doc('WarningsNG.Report')">WarningsNG.Report</a></code></li>
+            <li>the <a href="https://github.com/gedre/warningsng-exporter-for-matlab">GitHub.com project page</a></li>
+        </ul>
+    </body>
+</html>

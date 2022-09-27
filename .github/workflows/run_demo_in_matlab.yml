@@ -1,6 +1,9 @@
-# This workflow checks if the provided demo runs in matlab
+# This workflow builds the toolbox package and tests
+# - package installation
+# - running the demo
+# - package uninstallation
 
-name: Run toolbox demo in MATLAB
+name: Build and test
 
 # Controls when the action will run.
 on:

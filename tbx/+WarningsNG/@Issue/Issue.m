@@ -462,7 +462,7 @@ classdef Issue
             % line: 21
             % column: [1 9]
 
-            if ~isa(in, 'struct')
+            if ~isstruct(in)
                 flag = false;
                 return
             end
@@ -472,11 +472,15 @@ classdef Issue
                 flag = false;
                 return
             end
-            if numel(in.info) > 1
-                f = isfield(in.info{1}, {'id', 'message', 'line', 'column'});
-            else
-                f = isfield(in.info, {'id', 'message', 'line', 'column'});
+            if ~isstruct(in.info) || ~iscellstr(in.filepaths)
+                flag = false;
+                return
             end
+            if numel(in.info) ~= numel(in.filepaths)
+                flag = false;
+                return;
+            end
+            f = isfield(in.info, {'id', 'message', 'line', 'column'});
             flag = all(f);
         end
 

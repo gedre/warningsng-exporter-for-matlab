@@ -35,6 +35,11 @@ function build_dist_package()
     fwrite(fileID, strtrim(lines.join(newline))); % write modified lines into Contents.m file
     fclose(fileID); % close file
 
+    %% Export demo live script as html page
+    file_base = fullfile(cfdir, "tbx", "doc", "demo", "WarningsNG_demo");
+    demo_file = export(file_base + ".mlx", file_base + ".html");
+    disp("Generated html file " + demo_file);
+
     %% Package
     mltbx = fullfile(cfdir, [prjbase '-' tver '.mltbx']);
     matlab.addons.toolbox.packageToolbox(prj_file_full, mltbx);
