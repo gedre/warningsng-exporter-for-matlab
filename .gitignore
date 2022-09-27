@@ -4,5 +4,8 @@
 # generated files during package creation and demo execution
 WarningsNG_Exporter*.mltbx
 tbx/doc/demo/WarningsNG_demo.html
+tbx/doc/demo/WarningsNG_demo.m
 tbx/doc/demo/*.xml
 toolbox_struct.mat
+/*.xml
+
