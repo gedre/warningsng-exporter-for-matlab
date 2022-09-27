@@ -4,14 +4,23 @@ function export_demo()
     % the export does NOT work within github actions as of 2022-09-27
 
     %% Export demo live script as html page
-    cfdir = fileparts( mfilename('fullpath') ); % Get script directory
-    file_base = fullfile(cfdir, "tbx", "doc", "demo", "WarningsNG_demo");
+    cfdir       = fileparts( mfilename('fullpath') ); % Get script directory
+    demo_dir    = fullfile(cfdir, "tbx", "doc", "demo");
+    live_script = fullfile(demo_dir, "WarningsNG_demo.mlx");
+    html_file   = fullfile(demo_dir, "WarningsNG_demo.html");
+    m_dir       = fullfile(demo_dir, "m"); % in another directory to prevent shadowing
+    m_script    = fullfile(m_dir, "WarningsNG_demo.m"); % in another directory to prevent shadowing
+
     disp("Generating demo .html file");
     % do not run the live script here.  This is done in the run_demo.m script.
     % export() was introduced with 2022a
-    demo_file = export(file_base + ".mlx", file_base + ".html", Run=false);
-    disp("... done: " + demo_file);
+    exported_file = export(live_script, html_file, Run=false);
+    disp("... done: " + exported_file);
+
     disp("Generating demo .m file");
-    demo_file = export(file_base + ".mlx", file_base + ".m", Run=false);
-    disp("... done: " + demo_file);
+    if ~exist(m_dir, 'dir')
+        mkdir(m_dir);
+    end
+    exported_file = export(live_script, m_script, Run=false);
+    disp("... done: " + exported_file);
 end
