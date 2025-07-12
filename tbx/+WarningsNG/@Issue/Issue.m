@@ -261,7 +261,9 @@ classdef Issue
                 if ~isempty(d.cause)
                     % recursively add causing diagnostics
                     causing_diags = [ d.cause{:} ]; % transform cells with objects into array of objects
-                    issues = [ issues WarningsNG.Issue.MSLDiagnostic2Issue(causing_diags, severity) ]; %#ok<AGROW>
+                    issues = [ issues ...
+                        WarningsNG.Issue.MSLDiagnostic2Issue(...
+                            causing_diags, severity, SimulationPhase, SimulationTime) ]; %#ok<AGROW>
                 end
             end
         end
@@ -318,7 +320,7 @@ classdef Issue
                     % for MSLExceptions there is the additional field 'handles' which point to the model block causing
                     % the problem.
                     full_names = getfullname([ex.handles{:}]);
-                    % getfullname returns cells of char vectors or a char vector
+                    % getfullname() returns cells of char vectors or a char vector
                     if ~iscell(full_names)
                         full_names = { full_names };
                     end
