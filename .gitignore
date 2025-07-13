@@ -6,3 +6,6 @@ WarningsNG_Exporter*.mltbx
 tbx/doc/demo/*.xml
 toolbox_struct.mat
 tp*
+
+# other local helpers
+local_config_git.ps1

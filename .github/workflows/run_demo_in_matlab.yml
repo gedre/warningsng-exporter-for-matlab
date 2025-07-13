@@ -55,7 +55,7 @@ jobs:
           command: uninstall_toolbox
 
       - name: Upload toolbox distribution package as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mltbx
           path: WarningsNG_Exporter-*.mltbx
