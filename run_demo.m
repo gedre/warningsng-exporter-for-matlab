@@ -11,11 +11,18 @@ function run_demo()
     % copy demo to local directory to prevent running in the original installation directory
     disp("Populating new demo directory copy");
     copyfile(demo_src_dir, demo_tar_dir);
-    disp("... done");
 
     disp("Changing into new demo directory copy");
     old_dir = cd(demo_tar_dir);
-    disp("... done: " + demo_tar_dir);
+
+    demo_tar_dir_full = pwd();
+
+    % to find demo model
+    disp("Adding new demo directory copy to search path");
+    addpath(demo_tar_dir_full);
+
+    disp("Changing into new demo/mlx directory copy");
+    cd("mlx");
 
     disp("Running demo live script");
     WarningsNG_demo
@@ -25,14 +32,18 @@ function run_demo()
     dir("*.xml");
 
     disp("Changing into new demo/m directory copy");
-    cd("m");
-    disp("... done");
+    cd("../m");
 
     disp("Running demo m script");
     WarningsNG_demo
     disp("... done");
 
-    disp("Changing to old directory");
+    disp("Changing into new demo directory");
+    cd("..");
+
+    disp("Deleting new demo directory copy from search path");
+    rmpath(demo_tar_dir_full);
+
+    disp("Changing into old directory");
     cd(old_dir);
-    disp("... done");
 end

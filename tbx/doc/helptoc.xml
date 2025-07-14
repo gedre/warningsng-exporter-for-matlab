@@ -2,6 +2,6 @@
 
 <toc version="2.0">
     <tocitem target="WarningsNG_Exporter.html">WarningsNG Exporter
-        <tocitem target="demo/WarningsNG_demo.html" image="HelpIcon.HelpIcon.EXAMPLES">Toolbox demo</tocitem>
+        <tocitem target="demo/mlx/WarningsNG_demo.html" image="HelpIcon.HelpIcon.EXAMPLES">Toolbox demo</tocitem>
     </tocitem>
 </toc>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,IE=9,chrome=1"><meta name="generator" content="MATLAB 2023b"><title>Demo for using the WarningsNG classes</title><style type="text/css">.rtcContent { padding: 30px; } .S0 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 28.8px; min-height: 0px; white-space: pre-wrap; color: rgb(192, 76, 11); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 24px; font-weight: 400; text-align: left;  }
+.S1 { margin: 2px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.CodeBlock { background-color: #F5F5F5; margin: 10px 0 10px 0; }
+.S2 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 1px solid rgb(217, 217, 217); border-bottom: 1px solid rgb(217, 217, 217); border-radius: 4px; padding: 6px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S3 { margin: 3px 10px 5px 4px; padding: 0px; line-height: 20px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 20px; font-weight: 700; text-align: left;  }
+.S4 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 1px solid rgb(217, 217, 217); border-bottom: 0px none rgb(33, 33, 33); border-radius: 4px 4px 0px 0px; padding: 6px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S5 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 0px none rgb(33, 33, 33); border-radius: 0px; padding: 0px 45px 0px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S6 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 0px none rgb(33, 33, 33); border-bottom: 1px solid rgb(217, 217, 217); border-radius: 0px 0px 4px 4px; padding: 0px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S7 { margin: 10px 10px 9px 4px; padding: 0px; line-height: 21px; min-height: 0px; white-space: pre-wrap; color: rgb(33, 33, 33); font-family: Helvetica, Arial, sans-serif; font-style: normal; font-size: 14px; font-weight: 400; text-align: left;  }
+.S8 { border-left: 1px solid rgb(217, 217, 217); border-right: 1px solid rgb(217, 217, 217); border-top: 1px solid rgb(217, 217, 217); border-bottom: 1px solid rgb(217, 217, 217); border-radius: 4px 4px 0px 0px; padding: 6px 45px 4px 13px; line-height: 18.004px; min-height: 0px; white-space: nowrap; color: rgb(33, 33, 33); font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px;  }
+.S9 { color: rgb(33, 33, 33); padding: 10px 0px 6px 17px; background: rgb(255, 255, 255) none repeat scroll 0% 0% / auto padding-box border-box; font-family: Menlo, Monaco, Consolas, "Courier New", monospace; font-size: 14px; overflow-x: hidden; line-height: 17.234px;  }
+/* Styling that is common to warnings and errors is in diagnosticOutput.css */.embeddedOutputsErrorElement {    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsErrorElement .diagnosticMessage-errorType {    overflow: auto;}
+.embeddedOutputsErrorElement.inlineElement {}
+.embeddedOutputsErrorElement.rightPaneElement {}
+/* Styling that is common to warnings and errors is in diagnosticOutput.css */.embeddedOutputsWarningElement {    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsWarningElement .diagnosticMessage-warningType {    overflow: auto;}
+.embeddedOutputsWarningElement.inlineElement {}
+.embeddedOutputsWarningElement.rightPaneElement {}
+/* Copyright 2015-2023 The MathWorks, Inc. *//* In this file, styles are not scoped to rtcContainer since they could be in the Dojo Tooltip */.diagnosticMessage-wrapper {    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;    font-size: 12px;}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType {    /*This fallback value will be used for appdesigner warnings*/    color: var(--rtc-warning-output-color, var(--mw-color-matlabWarning));}
+.diagnosticMessage-wrapper.diagnosticMessage-warningType a {    /*This fallback value will be used for appdesigner warnings*/    color: var(--rtc-warning-output-color, var(--mw-color-matlabWarning));    text-decoration: underline;}
+.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-warningType,.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-warningType a {    color: var(--mw-color-matlabWarning) !important;}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType {    /*This fallback value will be used in appdesigner error tooltip text*/    color: var(--rtc-error-output-color, var(--mw-color-matlabErrors));}
+.diagnosticMessage-wrapper.diagnosticMessage-errorType a {    /*This fallback value will be used in appdesigner error tooltip text*/    color: var(--rtc-error-output-color, var(--mw-color-matlabErrors));    text-decoration: underline;}
+.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-errorType,.rtcThemeDefaultOverride .diagnosticMessage-wrapper.diagnosticMessage-errorType a {    color: var(--mw-color-matlabErrors) !important;}
+.diagnosticMessage-wrapper .diagnosticMessage-messagePart,.diagnosticMessage-wrapper .diagnosticMessage-causePart {    white-space: pre-wrap;}
+.diagnosticMessage-wrapper .diagnosticMessage-stackPart {    white-space: pre;}
+.embeddedOutputsTextElement,.embeddedOutputsVariableStringElement {    white-space: pre;    word-wrap:  initial;    min-height: 18px;    max-height: 550px;}
+.embeddedOutputsTextElement .textElement,.embeddedOutputsVariableStringElement .textElement {    overflow: auto;}
+.textElement,.rtcDataTipElement .textElement {    padding-top: 2px;}
+.embeddedOutputsTextElement.inlineElement,.embeddedOutputsVariableStringElement.inlineElement {}
+.inlineElement .textElement {}
+.embeddedOutputsTextElement.rightPaneElement,.embeddedOutputsVariableStringElement.rightPaneElement {    min-height: 16px;}
+.rightPaneElement .textElement {    padding-top: 2px;    padding-left: 9px;}</style></head><body><div class = rtcContent><h1  class = 'S0'><span>Demo for using the WarningsNG classes</span></h1><div  class = 'S1'><span>Create an initially empty issue report object </span><span style=' font-family: monospace;'>report1</span><span>. The resulting file will have the default file name </span><span style=' font-family: monospace;'>WarningsNG.xml</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >report1 = WarningsNG.Report();</span></span></div></div></div><h2  class = 'S3'><span>Example #1: issue from exception object</span></h2><div  class = 'S1'><span>Generate an exception by calling a non-existent function</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span style="color: #0e00ff;">try</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    notaFunction(5,6); </span><span style="color: #008013;">% this will throw an exception</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span style="color: #0e00ff;">catch </span><span >ME</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    ex = ME;</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span style="color: #0e00ff;">end</span></span></div></div></div><div  class = 'S7'><span>Create an </span><span style=' font-family: monospace;'>Issue</span><span> object from the exception and append it to the report</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >exception_issue = WarningsNG.Issue(ex);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >report1.append(exception_issue);</span></span></div></div></div><div  class = 'S7'><span>Create a 2nd report object and provide a non-default file name (</span><span style=' font-family: monospace;'>Report2_Issues.xml</span><span>) and a first </span><span style=' font-family: monospace;'>Issue</span><span> object to the constructor. The file extension </span><span style=' font-family: monospace;'>.xml</span><span> is used if it is not given.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >report2 = WarningsNG.Report(exception_issue, </span><span style="color: #a709f5;">"Report2_Issues"</span><span >);</span></span></div></div></div><h2  class = 'S3'><span>Example #2: self-constructed issue</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >generic_issue = WarningsNG.Issue(</span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Cat'</span><span >,  </span><span style="color: #a709f5;">'My issue category'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Ty'</span><span >,   </span><span style="color: #a709f5;">'My issue type'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Sev'</span><span >,  </span><span style="color: #a709f5;">'LOW'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Mes'</span><span >,  </span><span style="color: #a709f5;">'My own warning'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Desc'</span><span >, </span><span style="color: #a709f5;">'indescribable'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Mod'</span><span >,  </span><span style="color: #a709f5;">'My module'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    </span><span style="color: #a709f5;">'Pack'</span><span >, </span><span style="color: #a709f5;">'My package'</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >report1.append(generic_issue);</span></span></div></div></div><h2  class = 'S3'><span>Example #3: issues from Simulink sim run</span></h2><div  class = 'S1'><span>Run the simulation with an invalid stop time.  This produces an error entry in </span><span style=' font-family: monospace;'>simout.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.Diagnostic</span><span>. </span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >simout = sim(</span><span style="color: #a709f5;">'WarningsNG_demo_model'</span><span >, </span><span style="color: #a709f5;">'StopTime'</span><span >, 0, </span><span style="color: #a709f5;">'CaptureErrors'</span><span >, </span><span style="color: #a709f5;">'on'</span><span >);</span></span></div></div></div><div  class = 'S7'><span>Extract error issue from </span><span style=' font-family: monospace;'>Simulink.SimulationMetadata</span><span> object and append it to </span><span style=' font-family: monospace;'>report1</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >simulink_issue = WarningsNG.Issue(simout.SimulationMetadata);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >report1.append(simulink_issue);</span></span></div></div></div><div  class = 'S7'><span>Run simulation again, but enable "Automatic solver parameter selection" diagnostics, which causes a warning. It is OK, if you see a warning below!</span></div><div class="CodeBlock"><div class="inlineWrapper outputs"><div  class = 'S8'><span style="white-space: pre"><span >simout = sim(</span><span style="color: #a709f5;">'WarningsNG_demo_model'</span><span >, </span><span style="color: #a709f5;">'StopTime'</span><span >, </span><span style="color: #a709f5;">'1'</span><span >, </span><span style="color: #a709f5;">'SolverPrmCheckMsg'</span><span >, </span><span style="color: #a709f5;">'warning'</span><span >, </span><span style="color: #a709f5;">'CaptureErrors'</span><span >, </span><span style="color: #a709f5;">'on'</span><span >);</span></span></div><div  class = 'S9'><div class="inlineElement eoOutputWrapper disableDefaultGestureHandling embeddedOutputsWarningElement" uid="10667E4F" prevent-scroll="true" data-testid="output_0" tabindex="-1" style="width: 1146px; white-space: normal; font-style: normal; color: rgb(33, 33, 33); font-size: 12px;"><div class="diagnosticMessage-wrapper diagnosticMessage-warningType eoOutputContent" tabindex="-1" data-previous-available-width="1109" data-previous-scroll-height="19" data-hashorizontaloverflow="false" style="max-height: 261px; white-space: normal; font-style: normal; color: rgb(179, 98, 5); font-size: 12px;"><div class="diagnosticMessage-messagePart" style="white-space: pre-wrap; font-style: normal; color: rgb(179, 98, 5); font-size: 12px;">Warning: Model 'vdp' is using a default value of 0.02 for maximum step size. You can disable this diagnostic by setting Automatic solver parameter selection to 'none'</div><div class="diagnosticMessage-stackPart" style="white-space: pre; font-style: normal; color: rgb(179, 98, 5); font-size: 12px;"></div></div></div></div></div></div><div  class = 'S7'><span>Create a new </span><span style=' font-family: monospace;'>Issue</span><span> object and extract the warning from the </span><span style=' font-family: monospace;'>Simulink.SimulationOutput</span><span> object </span><span style=' font-family: monospace;'>simout</span><span> during constructor call. Append the </span><span style=' font-family: monospace;'>Issue</span><span> object to </span><span style=' font-family: monospace;'>report1</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >report1.append( WarningsNG.Issue(simout) );</span></span></div></div></div><h2  class = 'S3'><span>Example #4: linked exceptions with stack</span></h2><div  class = 'S1'><span>Create a MSL exception object and a</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >MSLEx = MSLException(gcbh, message(</span><span style="color: #a709f5;">'Simulink:utility:incompatRotationMirror'</span><span >,5,</span><span style="color: #a709f5;">'test'</span><span >));</span></span></div></div></div><div  class = 'S7'><span>Create an exception object and add it as causing exception to </span><span style=' font-family: monospace;'>MSLEx</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >MEx   = MException(</span><span style="color: #a709f5;">'CauseId:Me'</span><span >,</span><span style="color: #a709f5;">'Causing exception'</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >MSLEx = MSLEx.addCause(MEx);</span></span></div></div></div><div  class = 'S7'><span>Create a new </span><span style=' font-family: monospace;'>Issue</span><span> object and extract the warning from the </span><span style=' font-family: monospace;'>MSLException</span><span> object during constructor call. Append the </span><span style=' font-family: monospace;'>Issue</span><span> object to </span><span style=' font-family: monospace;'>report1</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >report1.append( WarningsNG.Issue(MSLEx) );</span></span></div></div></div><div  class = 'S7'><span>Close the demo model again and discard all changes. This was only needed for example #3 and #4.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >bdclose(bdroot);</span></span></div></div></div><h2  class = 'S3'><span>Example #5: issues from mlint/checkcode</span></h2><div  class = 'S1'><span>Run </span><span style=' font-family: monospace;'>checkcode</span><span> in a dummy script file to demonstrate mlint warnings</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >issue_class_file = fileparts(which(</span><span style="color: #a709f5;">'WarningsNG.Issue'</span><span >)); </span><span style="color: #008013;">% get installation directory of Issue class file</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >demo_dir         = fullfile(issue_class_file, </span><span style="color: #a709f5;">".."</span><span >, </span><span style="color: #a709f5;">".."</span><span >, </span><span style="color: #a709f5;">"doc"</span><span >, </span><span style="color: #a709f5;">"demo"</span><span >);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >filesToCheck     = fullfile(demo_dir, </span><span style="color: #a709f5;">"dummy_script.m"</span><span >);</span></span></div></div></div><div  class = 'S7'><span>If you want to check all your </span><span style=' font-family: monospace;'>.m</span><span> and </span><span style=' font-family: monospace;'>.mlx</span><span> in some directory, you may analyse them in a loop like this.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span style="color: #0e00ff;">for </span><span >f = filesToCheck</span></span></div></div></div><div  class = 'S7'><span>Call checkcode to lint MATLAB code.  Note: checkcode needs to be called with the '</span><span style=' font-family: monospace;'>-id</span><span>' option. The returned IDs are also used by the Issue class.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >    [info, fp] = checkcode(f, </span><span style="color: #a709f5;">'-id'</span><span >);</span></span></div></div></div><div  class = 'S7'><span>Create a struct with both outputs of checkcode for the call of the </span><span style=' font-family: monospace;'>Issue</span><span> constructor.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >    cc.info         = info; </span><span style="color: #008013;">% the warnings for file f</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    cc.filepaths    = cell(size(info));</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    cc.filepaths(:) = fp;   </span><span style="color: #008013;">% set the same filename for each warning</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    report1.append( WarningsNG.Issue(cc) );</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span style="color: #0e00ff;">end</span></span></div></div></div><h2  class = 'S3'><span>Example #6: issues from TargetLink messages</span></h2><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span style="color: #0e00ff;">if </span><span >exist(</span><span style="color: #a709f5;">'ds_error_get'</span><span >, </span><span style="color: #a709f5;">'file'</span><span >) </span><span style="color: #008013;">% check if TargetLink is installed</span></span></div></div></div><div  class = 'S7'><span>Create example message struct and set some fields</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >    msg = ds_error_get(</span><span style="color: #a709f5;">'MessageStruct'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >        </span><span style="color: #a709f5;">'type'</span><span >,       </span><span style="color: #a709f5;">'error'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >        </span><span style="color: #a709f5;">'title'</span><span >,      </span><span style="color: #a709f5;">'Example TargetLink Error'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >        </span><span style="color: #a709f5;">'msg'</span><span >,        </span><span style="color: #a709f5;">'This is an example error message to demonstrate the WarningsNG Exporter for TargetLink'</span><span >, </span><span style="color: #0e00ff;">...</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span >        </span><span style="color: #a709f5;">'ObjectName'</span><span >, </span><span style="color: #a709f5;">'/pipt1/picontroller'</span><span >);</span></span></div></div></div><div  class = 'S7'><span>A real TargetLink query for errors/warnings looks like this:</span></div><div  class = 'S1'><span style=' font-family: monospace;'>   msg_count = ds_error_check('warning');</span></div><div  class = 'S1'><span style=' font-family: monospace;'>   if msg_count &gt; 0</span></div><div  class = 'S1'><span style=' font-family: monospace;'>     report1.append( WarningsNG.Issue(ds_error_get('Message', 1:msg_count)) );</span></div><div  class = 'S1'><span style=' font-family: monospace;'>   end</span></div><div  class = 'S1'><span>Create an </span><span style=' font-family: monospace;'>Issue</span><span> object from the TargetLink error message  and add it to </span><span style=' font-family: monospace;'>report1</span><span>.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S4'><span style="white-space: pre"><span >    tl_issue = WarningsNG.Issue(msg);</span></span></div></div><div class="inlineWrapper"><div  class = 'S5'><span style="white-space: pre"><span >    report1.append(tl_issue);</span></span></div></div><div class="inlineWrapper"><div  class = 'S6'><span style="white-space: pre"><span style="color: #0e00ff;">end</span></span></div></div></div><h2  class = 'S3'><span>Write to file</span></h2><div  class = 'S1'><span>Write all issues in </span><span style=' font-family: monospace;'>report1</span><span> into a WarningsNG XML file.  Here, the default xml file-name is used.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >report1.xmlwrite();</span></span></div></div></div><div  class = 'S7'><span>If a Report object gets out of scope at the end of a function, the destructor is called.  As part of the destructor call, the XML file is written if this did not happen before.</span></div><div  class = 'S1'><span>Here we provoke the destructor call by deleting the object explicitly.  The file </span><span style=' font-family: monospace;'>Issues.xml</span><span> is written with one entry.</span></div><div class="CodeBlock"><div class="inlineWrapper"><div  class = 'S2'><span style="white-space: pre"><span >delete(report2);</span></span></div></div></div><div  class = 'S7'><span>Look into files </span><span style=' font-family: monospace;'>Report2_Issues.xml</span><span> and </span><span style=' font-family: monospace;'>WarningsNG.xml</span><span> to see the results of the demo.</span></div>
+<br>
+<!-- 
+##### SOURCE BEGIN #####
+%% Demo for using the WarningsNG classes
+% Create an initially empty issue report object |report1|. The resulting file 
+% will have the default file name |WarningsNG.xml|.
+
+report1 = WarningsNG.Report();
+%% Example #1: issue from exception object
+% Generate an exception by calling a non-existent function
+
+try
+    notaFunction(5,6); % this will throw an exception
+catch ME
+    ex = ME;
+end
+%% 
+% Create an |Issue| object from the exception and append it to the report
+
+exception_issue = WarningsNG.Issue(ex);
+report1.append(exception_issue);
+%% 
+% Create a 2nd report object and provide a non-default file name (|Report2_Issues.xml|) 
+% and a first |Issue| object to the constructor. The file extension |.xml| is 
+% used if it is not given.
+
+report2 = WarningsNG.Report(exception_issue, "Report2_Issues");
+%% Example #2: self-constructed issue
+
+generic_issue = WarningsNG.Issue(...
+    'Cat',  'My issue category', ...
+    'Ty',   'My issue type', ...
+    'Sev',  'LOW', ...
+    'Mes',  'My own warning', ...
+    'Desc', 'indescribable', ...
+    'Mod',  'My module', ...
+    'Pack', 'My package');
+report1.append(generic_issue);
+%% Example #3: issues from Simulink sim run
+% Run the simulation with an invalid stop time.  This produces an error entry 
+% in |simout.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.Diagnostic|. 
+
+simout = sim('WarningsNG_demo_model', 'StopTime', 0, 'CaptureErrors', 'on');
+%% 
+% Extract error issue from |Simulink.SimulationMetadata| object and append it 
+% to |report1|.
+
+simulink_issue = WarningsNG.Issue(simout.SimulationMetadata);
+report1.append(simulink_issue);
+%% 
+% Run simulation again, but enable "Automatic solver parameter selection" diagnostics, 
+% which causes a warning. It is OK, if you see a warning below!
+
+simout = sim('WarningsNG_demo_model', 'StopTime', '1', 'SolverPrmCheckMsg', 'warning', 'CaptureErrors', 'on');
+%% 
+% Create a new |Issue| object and extract the warning from the |Simulink.SimulationOutput| 
+% object |simout| during constructor call. Append the |Issue| object to |report1|.
+
+report1.append( WarningsNG.Issue(simout) );
+%% Example #4: linked exceptions with stack
+% Create a MSL exception object and a
+
+MSLEx = MSLException(gcbh, message('Simulink:utility:incompatRotationMirror',5,'test'));
+%% 
+% Create an exception object and add it as causing exception to |MSLEx|.
+
+MEx   = MException('CauseId:Me','Causing exception');
+MSLEx = MSLEx.addCause(MEx);
+%% 
+% Create a new |Issue| object and extract the warning from the |MSLException| 
+% object during constructor call. Append the |Issue| object to |report1|.
+
+report1.append( WarningsNG.Issue(MSLEx) );
+%% 
+% Close the demo model again and discard all changes. This was only needed for 
+% example #3 and #4.
+
+bdclose(bdroot);
+%% Example #5: issues from mlint/checkcode
+% Run |checkcode| in a dummy script file to demonstrate mlint warnings
+
+issue_class_file = fileparts(which('WarningsNG.Issue')); % get installation directory of Issue class file
+demo_dir         = fullfile(issue_class_file, "..", "..", "doc", "demo");
+filesToCheck     = fullfile(demo_dir, "dummy_script.m");
+%% 
+% If you want to check all your |.m| and |.mlx| in some directory, you may analyse 
+% them in a loop like this.
+
+for f = filesToCheck
+%% 
+% Call checkcode to lint MATLAB code.  Note: checkcode needs to be called with 
+% the '|-id|' option. The returned IDs are also used by the Issue class.
+
+    [info, fp] = checkcode(f, '-id');
+%% 
+% Create a struct with both outputs of checkcode for the call of the |Issue| 
+% constructor.
+
+    cc.info         = info; % the warnings for file f
+    cc.filepaths    = cell(size(info));
+    cc.filepaths(:) = fp;   % set the same filename for each warning
+    report1.append( WarningsNG.Issue(cc) );
+end
+%% Example #6: issues from TargetLink messages
+
+if exist('ds_error_get', 'file') % check if TargetLink is installed
+%% 
+% Create example message struct and set some fields
+
+    msg = ds_error_get('MessageStruct', ...
+        'type',       'error', ...
+        'title',      'Example TargetLink Error', ...
+        'msg',        'This is an example error message to demonstrate the WarningsNG Exporter for TargetLink', ...
+        'ObjectName', '/pipt1/picontroller');
+%% 
+% A real TargetLink query for errors/warnings looks like this:
+% 
+% |msg_count = ds_error_check('warning');|
+% 
+% |if msg_count > 0|
+% 
+% |report1.append( WarningsNG.Issue(ds_error_get('Message', 1:msg_count)) );|
+% 
+% |end|
+% 
+% Create an |Issue| object from the TargetLink error message  and add it to 
+% |report1|.
+
+    tl_issue = WarningsNG.Issue(msg);
+    report1.append(tl_issue);
+end
+%% Write to file
+% Write all issues in |report1| into a WarningsNG XML file.  Here, the default 
+% xml file-name is used.
+
+report1.xmlwrite();
+%% 
+% If a Report object gets out of scope at the end of a function, the destructor 
+% is called.  As part of the destructor call, the XML file is written if this 
+% did not happen before.
+% 
+% Here we provoke the destructor call by deleting the object explicitly.  The 
+% file |Issues.xml| is written with one entry.
+
+delete(report2);
+%% 
+% Look into files |Report2_Issues.xml| and |WarningsNG.xml| to see the results 
+% of the demo.
+##### SOURCE END #####
+-->
+</div></body></html>

@@ -6,10 +6,10 @@ function export_demo()
     %% Export demo live script as html page
     cfdir       = fileparts( mfilename('fullpath') ); % Get script directory
     demo_dir    = fullfile(cfdir, "tbx", "doc", "demo");
-    live_script = fullfile(demo_dir, "WarningsNG_demo.mlx");
-    html_file   = fullfile(demo_dir, "WarningsNG_demo.html");
-    m_dir       = fullfile(demo_dir, "m"); % in another directory to prevent shadowing
-    m_script    = fullfile(m_dir, "WarningsNG_demo.m"); % in another directory to prevent shadowing
+    live_script = fullfile(demo_dir, "mlx", "WarningsNG_demo.mlx");
+    html_file   = fullfile(demo_dir, "mlx", "WarningsNG_demo.html");
+    m_dir       = fullfile(demo_dir, "m");
+    m_script    = fullfile(m_dir, "WarningsNG_demo.m");
 
     disp("Generating demo .html file");
     % do not run the live script here.  This is done in the run_demo.m script.

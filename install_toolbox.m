@@ -6,7 +6,7 @@ function install_toolbox()
 
     cfdir = fileparts( mfilename('fullpath') ); % Get script directory
     toolbox_file_struct = dir(fullfile(cfdir, "*.mltbx")); % determine the prj file name, returns a struct
-    toolbox_file_full = fullfile(toolbox_file_struct(1).folder, toolbox_file_struct(1).name);
+    toolbox_file_full = fullfile(toolbox_file_struct(end).folder, toolbox_file_struct(end).name);
     disp("Using toolbox file " + toolbox_file_full);
 
     % install the toolbox
