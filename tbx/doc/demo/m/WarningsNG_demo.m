@@ -37,7 +37,7 @@ report1.append(generic_issue);
 % Run the simulation with an invalid stop time.  This produces an error entry 
 % in |simout.SimulationMetadata.ExecutionInfo.ErrorDiagnostic.Diagnostic|. 
 
-simout = sim('vdp', 'StopTime', 0, 'CaptureErrors', 'on');
+simout = sim('WarningsNG_demo_model', 'StopTime', 0, 'CaptureErrors', 'on');
 %% 
 % Extract error issue from |Simulink.SimulationMetadata| object and append it 
 % to |report1|.
@@ -48,7 +48,7 @@ report1.append(simulink_issue);
 % Run simulation again, but enable "Automatic solver parameter selection" diagnostics, 
 % which causes a warning. It is OK, if you see a warning below!
 
-simout = sim('vdp', 'StopTime', '1', 'SolverPrmCheckMsg', 'warning', 'CaptureErrors', 'on');
+simout = sim('WarningsNG_demo_model', 'StopTime', '1', 'SolverPrmCheckMsg', 'warning', 'CaptureErrors', 'on');
 %% 
 % Create a new |Issue| object and extract the warning from the |Simulink.SimulationOutput| 
 % object |simout| during constructor call. Append the |Issue| object to |report1|.
@@ -69,10 +69,10 @@ MSLEx = MSLEx.addCause(MEx);
 
 report1.append( WarningsNG.Issue(MSLEx) );
 %% 
-% Close the vdp model again and discard all changes. This was only needed for 
+% Close the demo model again and discard all changes. This was only needed for 
 % example #3 and #4.
 
-bdclose('vdp');
+bdclose(bdroot);
 %% Example #5: issues from mlint/checkcode
 % Run |checkcode| in a dummy script file to demonstrate mlint warnings
 
