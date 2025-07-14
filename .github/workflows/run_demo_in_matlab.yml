@@ -30,9 +30,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Sets up MATLAB on the GitHub Actions runner
+      # Sets up MATLAB/Simulink on the GitHub Actions runner
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v2
+        with:
+          products: Simulink
 
       - name: Build the toolbox distribution package
         uses: matlab-actions/run-command@v2
